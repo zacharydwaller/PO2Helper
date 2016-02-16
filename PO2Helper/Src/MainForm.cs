@@ -56,7 +56,12 @@ namespace PO2Helper
 
         private void hexBox_TextChanged( object sender, EventArgs e )
         {
-
+            string hex;
+            hexBox.SelectionStart = hexBox.Text.Length;
+            if( tryParseBoxHex( hexBox, out hex ) )
+            {
+                updateBoxesDec( hexToDec( hex ) );
+            }
         }
 
         private void decBox_TextChanged( object sender, EventArgs e )
@@ -116,17 +121,6 @@ namespace PO2Helper
             return Convert.ToUInt64( Math.Pow( 2, po2 ) );
         }
 
-        // Rounds up to the nearest power of 2
-        private int decToPo2( UInt64 dec )
-        {
-            int po2 = 0;
-            while( dec > Math.Pow( 2, po2 ) )
-            {
-                po2++;
-            }
-            return po2;
-        }
-
         private int po2ToShorthandNumeral( int po2 )
         {
             // Returns ComboBox index
@@ -139,9 +133,26 @@ namespace PO2Helper
             return (po2 - ( po2 % 10 )) / 10;
         }
 
+        // Rounds up to the nearest power of 2
+        private int decToPo2( UInt64 dec )
+        {
+            int po2 = 0;
+            while( dec > Math.Pow( 2, po2 ) )
+            {
+                po2++;
+            }
+            return po2;
+        }
+
         private string decToHex( UInt64 dec )
         {
             return String.Concat( "0x", dec.ToString( "X" ) );
+        }
+
+        // Assumes hex is valid
+        private UInt64 hexToDec( string hex )
+        {
+            return Convert.ToUInt64( hex, 16 );
         }
 
         // Try to parse input as numerals
@@ -164,6 +175,36 @@ namespace PO2Helper
                 box.SelectAll();
             }
             value = 0;
+            return false;
+        }
+        private bool tryParseBoxHex( TextBox box, out string value )
+        {
+            UInt64 dec;
+            value = box.Text;
+
+            if( value.StartsWith( "0x", StringComparison.OrdinalIgnoreCase ) )
+            {
+                value = value.Substring(2);
+            }
+
+            try
+            {
+                // Try conversion
+                dec = Convert.ToUInt64( value, 16 );
+                return true;
+            }
+            catch( OverflowException overflow )
+            {
+                box.Clear();
+                box.Text = "Overflow";
+                box.SelectAll();
+            }
+            catch
+            {
+                box.SelectAll();
+            }
+
+            value = String.Empty;
             return false;
         }
         private bool tryParseBox( TextBox box, out int value )
