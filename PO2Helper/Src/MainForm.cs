@@ -33,19 +33,9 @@ namespace PO2Helper
                 }
                 else
                 {
-                    po2Box.Clear();
+                    pushOverflowError( po2Box );
                 }
             }
-        }
-
-        private void shorthandBox_TextChanged( object sender, EventArgs e )
-        {
-            
-        }
-
-        private void shortHandComboBox_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            
         }
 
         private void hexBox_TextChanged( object sender, EventArgs e )
@@ -165,9 +155,7 @@ namespace PO2Helper
             }
             catch( OverflowException overflow )
             {
-                box.Clear();
-                box.Text = "Overflow";
-                box.SelectAll();
+                pushOverflowError( box );
             }
             catch
             {
@@ -194,9 +182,7 @@ namespace PO2Helper
             }
             catch( OverflowException overflow )
             {
-                box.Clear();
-                box.Text = "Overflow";
-                box.SelectAll();
+                pushOverflowError( box );
             }
             catch
             {
@@ -214,6 +200,13 @@ namespace PO2Helper
             return success;
         }
         
+        private void pushOverflowError( TextBox box )
+        {
+            box.Clear();
+            box.Text = "Overflow";
+            box.SelectAll();
+        }
+
         // Unused
         private void MainForm_Load( object sender, EventArgs e )
         {
@@ -221,6 +214,16 @@ namespace PO2Helper
         }
 
         private void label1_Click( object sender, EventArgs e )
+        {
+
+        }
+
+        private void shorthandBox_TextChanged( object sender, EventArgs e )
+        {
+
+        }
+
+        private void shortHandComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
 
         }
