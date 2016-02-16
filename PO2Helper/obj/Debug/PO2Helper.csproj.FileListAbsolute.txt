@@ -1,0 +1,9 @@
+C:\Development\c#\PO2Helper\PO2Helper\bin\Debug\PO2Helper.exe.config
+C:\Development\c#\PO2Helper\PO2Helper\bin\Debug\PO2Helper.exe
+C:\Development\c#\PO2Helper\PO2Helper\bin\Debug\PO2Helper.pdb
+C:\Development\c#\PO2Helper\PO2Helper\obj\Debug\PO2Helper.csprojResolveAssemblyReference.cache
+C:\Development\c#\PO2Helper\PO2Helper\obj\Debug\PO2Helper.MainForm.resources
+C:\Development\c#\PO2Helper\PO2Helper\obj\Debug\PO2Helper.Properties.Resources.resources
+C:\Development\c#\PO2Helper\PO2Helper\obj\Debug\PO2Helper.csproj.GenerateResource.Cache
+C:\Development\c#\PO2Helper\PO2Helper\obj\Debug\PO2Helper.exe
+C:\Development\c#\PO2Helper\PO2Helper\obj\Debug\PO2Helper.pdb
