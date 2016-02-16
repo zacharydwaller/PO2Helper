@@ -12,6 +12,9 @@ namespace PO2Helper
 {
     public partial class MainForm : Form
     {
+        // Class Constants
+        private const int maxPo2 = 63;
+        // MainForm
         public MainForm()
         {
             InitializeComponent();
@@ -23,7 +26,7 @@ namespace PO2Helper
             try
             {
                 int power = Convert.ToInt32( po2Box.Text );
-                if( power < 64 )
+                if( power >= maxPo2 )
                 {
                     updateBoxes( power );
                 }
