@@ -61,7 +61,12 @@ namespace PO2Helper
 
         private void decBox_TextChanged( object sender, EventArgs e )
         {
-
+            UInt64 dec;
+            decBox.SelectionStart = decBox.Text.Length;
+            if( tryParseBoxULong( decBox, out dec ) )
+            {
+                updateBoxesDec( dec );
+            }
         }
 
         // Updates boxes with correct conversions
@@ -76,7 +81,11 @@ namespace PO2Helper
         // UInt64 overload
         private void updateBoxesDec( UInt64 dec )
         {
-
+            int po2 = decToPo2( dec );
+            updatePo2( po2 );
+            updateShorthand( po2 );
+            updateHex( dec );
+            updateDec( dec );
         }
 
         private void updatePo2( int po2 )
@@ -107,6 +116,17 @@ namespace PO2Helper
             return Convert.ToUInt64( Math.Pow( 2, po2 ) );
         }
 
+        // Rounds up to the nearest power of 2
+        private int decToPo2( UInt64 dec )
+        {
+            int po2 = 0;
+            while( dec > Math.Pow( 2, po2 ) )
+            {
+                po2++;
+            }
+            return po2;
+        }
+
         private int po2ToShorthandNumeral( int po2 )
         {
             // Returns ComboBox index
@@ -133,12 +153,18 @@ namespace PO2Helper
 
                 return true;
             }
+            catch( OverflowException overflow )
+            {
+                box.Clear();
+                box.Text = "Overflow";
+                box.SelectAll();
+            }
             catch
             {
-                po2Box.SelectAll();
-                value = 0;
-                return false;
+                box.SelectAll();
             }
+            value = 0;
+            return false;
         }
         private bool tryParseBox( TextBox box, out int value )
         {
