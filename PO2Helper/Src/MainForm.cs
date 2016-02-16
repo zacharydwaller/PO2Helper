@@ -23,22 +23,17 @@ namespace PO2Helper
         // Text update functions
         private void po2Box_TextChanged( object sender, EventArgs e )
         {
-            try
+            int power;
+            if( tryParseBox( po2Box, out power ) )
             {
-                Int32 power = Convert.ToInt32( po2Box.Text );
                 if( power < maxPo2 )
                 {
-                    updateBoxes( power );
+                    updateBoxesPo2( power );
                 }
                 else
                 {
                     po2Box.Clear();
                 }
-            }
-            catch
-            {
-                // Tried to enter something bad
-                po2Box.SelectAll();
             }
         }
 
@@ -70,7 +65,7 @@ namespace PO2Helper
         }
 
         // Updates boxes with correct conversions
-        private void updateBoxes( int po2 )
+        private void updateBoxesPo2( int po2 )
         {
             UInt64 dec = po2ToDec( po2 );
             updatePo2( po2 );
@@ -79,7 +74,7 @@ namespace PO2Helper
             updateDec( dec );
         }
         // UInt64 overload
-        private void updateBoxes( UInt64 dec )
+        private void updateBoxesDec( UInt64 dec )
         {
 
         }
@@ -114,7 +109,8 @@ namespace PO2Helper
 
         private int po2ToShorthandNumeral( int po2 )
         {
-            return (int) Math.Pow( 2, po2 % 10 );
+            // Returns ComboBox index
+            return Convert.ToInt32( Math.Pow( 2, po2 % 10 ) );
         }
 
         // Converts into ComboBox index
@@ -128,6 +124,30 @@ namespace PO2Helper
             return String.Concat( "0x", dec.ToString( "X" ) );
         }
 
+        // Try to parse input as numerals
+        private bool tryParseBoxULong( TextBox box, out UInt64 value )
+        {
+            try
+            {
+                value = Convert.ToUInt64( box.Text );
+
+                return true;
+            }
+            catch
+            {
+                po2Box.SelectAll();
+                value = 0;
+                return false;
+            }
+        }
+        private bool tryParseBox( TextBox box, out int value )
+        {
+            UInt64 output;
+            bool success = tryParseBoxULong( box, out output );
+            value = Convert.ToInt32( output );
+            return success;
+        }
+        
         // Unused
         private void MainForm_Load( object sender, EventArgs e )
         {
