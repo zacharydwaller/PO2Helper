@@ -91,11 +91,12 @@ namespace PO2Helper
             // 
             // shorthandBox
             // 
+            this.shorthandBox.Enabled = false;
             this.shorthandBox.Location = new System.Drawing.Point(134, 33);
             this.shorthandBox.Name = "shorthandBox";
             this.shorthandBox.Size = new System.Drawing.Size(91, 20);
             this.shorthandBox.TabIndex = 1;
-            this.shorthandBox.TextChanged += new System.EventHandler(this.shortHandBox_TextChanged);
+            this.shorthandBox.TextChanged += new System.EventHandler(this.shorthandBox_TextChanged);
             // 
             // hexBox
             // 
@@ -117,6 +118,7 @@ namespace PO2Helper
             // 
             this.shortHandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.shortHandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.shortHandComboBox.Enabled = false;
             this.shortHandComboBox.FormattingEnabled = true;
             this.shortHandComboBox.IntegralHeight = false;
             this.shortHandComboBox.Items.AddRange(new object[] {

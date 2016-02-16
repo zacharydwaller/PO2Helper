@@ -24,6 +24,7 @@ namespace PO2Helper
         private void po2Box_TextChanged( object sender, EventArgs e )
         {
             int power;
+            po2Box.SelectionStart = po2Box.Text.Length;
             if( tryParseBox( po2Box, out power ) )
             {
                 if( power < maxPo2 )
@@ -37,21 +38,14 @@ namespace PO2Helper
             }
         }
 
-        private void shortHandBox_TextChanged( object sender, EventArgs e )
+        private void shorthandBox_TextChanged( object sender, EventArgs e )
         {
             
         }
 
         private void shortHandComboBox_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if( shortHandComboBox.Items.Contains( shortHandComboBox.Text ) )
-            {
-                // Do something
-            }
-            else
-            {
-                shortHandComboBox.SelectedIndex = 0;
-            }
+            
         }
 
         private void hexBox_TextChanged( object sender, EventArgs e )
@@ -131,6 +125,11 @@ namespace PO2Helper
         private int po2ToShorthandPrefix( int po2 )
         {
             return (po2 - ( po2 % 10 )) / 10;
+        }
+
+        private int shorthandToPo2( int numeral, int prefix )
+        {
+            return ( prefix * 10 ) + decToPo2( (UInt64) numeral );
         }
 
         // Rounds up to the nearest power of 2
