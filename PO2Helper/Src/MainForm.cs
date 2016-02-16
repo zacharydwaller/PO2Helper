@@ -13,7 +13,7 @@ namespace PO2Helper
     public partial class MainForm : Form
     {
         // Class Constants
-        private const int maxPo2 = 63;
+        private const int maxPo2 = 64;
         // MainForm
         public MainForm()
         {
@@ -25,8 +25,8 @@ namespace PO2Helper
         {
             try
             {
-                int power = Convert.ToInt32( po2Box.Text );
-                if( power >= maxPo2 )
+                Int32 power = Convert.ToInt32( po2Box.Text );
+                if( power < maxPo2 )
                 {
                     updateBoxes( power );
                 }
@@ -38,7 +38,7 @@ namespace PO2Helper
             catch
             {
                 // Tried to enter something bad
-                po2Box.Clear();
+                po2Box.SelectAll();
             }
         }
 
@@ -72,10 +72,16 @@ namespace PO2Helper
         // Updates boxes with correct conversions
         private void updateBoxes( int po2 )
         {
+            UInt64 dec = po2ToDec( po2 );
             updatePo2( po2 );
             updateShorthand( po2 );
-            updateHex( po2 );
-            updateDec( po2 );
+            updateHex( dec );
+            updateDec( dec );
+        }
+        // UInt64 overload
+        private void updateBoxes( UInt64 dec )
+        {
+
         }
 
         private void updatePo2( int po2 )
@@ -89,17 +95,22 @@ namespace PO2Helper
             shortHandComboBox.SelectedIndex = po2ToShorthandPrefix( po2 );
         }
 
-        private void updateHex( int po2 )
+        private void updateHex( UInt64 dec )
         {
-            hexBox.Text = po2ToHex( po2 );
+            hexBox.Text = decToHex( dec );
         }
 
-        private void updateDec( int po2 )
+        private void updateDec( UInt64 dec )
         {
-            decBox.Text = Convert.ToString( po2ToDec( po2 ) );
+            decBox.Text = Convert.ToString( dec );
         }
 
         // Various Conversions
+
+        private UInt64 po2ToDec( int po2 )
+        {
+            return Convert.ToUInt64( Math.Pow( 2, po2 ) );
+        }
 
         private int po2ToShorthandNumeral( int po2 )
         {
@@ -112,18 +123,10 @@ namespace PO2Helper
             return (po2 - ( po2 % 10 )) / 10;
         }
 
-        private string po2ToHex( int po2 )
+        private string decToHex( UInt64 dec )
         {
-            UInt64 intValue = po2ToDec( po2 );
-            return String.Concat( "0x", intValue.ToString( "X" ) );
+            return String.Concat( "0x", dec.ToString( "X" ) );
         }
-
-        private UInt64 po2ToDec( int po2 )
-        {
-            return Convert.ToUInt64( Math.Pow( 2, po2 ) );
-        }
-
-
 
         // Unused
         private void MainForm_Load( object sender, EventArgs e )
