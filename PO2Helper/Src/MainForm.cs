@@ -37,7 +37,7 @@ namespace PO2Helper
             }
             catch
             {
-                // Tried to enter something that's not an integer
+                // Tried to enter something bad
                 po2Box.Clear();
             }
         }
