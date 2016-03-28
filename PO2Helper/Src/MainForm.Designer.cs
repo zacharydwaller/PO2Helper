@@ -29,77 +29,73 @@ namespace PO2Helper
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.po2Label = new System.Windows.Forms.Label();
+            this.shorthandLabel = new System.Windows.Forms.Label();
+            this.hexLabel = new System.Windows.Forms.Label();
+            this.decLabel = new System.Windows.Forms.Label();
             this.po2Box = new System.Windows.Forms.TextBox();
-            this.shorthandBox = new System.Windows.Forms.TextBox();
             this.hexBox = new System.Windows.Forms.TextBox();
             this.decBox = new System.Windows.Forms.TextBox();
-            this.shortHandComboBox = new System.Windows.Forms.ComboBox();
+            this.shorthandPrefBox = new System.Windows.Forms.ComboBox();
+            this.shorthandNumBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // label1
+            // po2Label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bits/Power Of 2:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.po2Label.AutoSize = true;
+            this.po2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.po2Label.Location = new System.Drawing.Point(12, 9);
+            this.po2Label.Name = "po2Label";
+            this.po2Label.Size = new System.Drawing.Size(116, 18);
+            this.po2Label.TabIndex = 0;
+            this.po2Label.Text = "Bits/Power Of 2:";
             // 
-            // label2
+            // shorthandLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 18);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Shorthand:";
+            this.shorthandLabel.AutoSize = true;
+            this.shorthandLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shorthandLabel.Location = new System.Drawing.Point(12, 35);
+            this.shorthandLabel.Name = "shorthandLabel";
+            this.shorthandLabel.Size = new System.Drawing.Size(80, 18);
+            this.shorthandLabel.TabIndex = 1;
+            this.shorthandLabel.Text = "Shorthand:";
             // 
-            // label3
+            // hexLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Hexadecimal:";
+            this.hexLabel.AutoSize = true;
+            this.hexLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hexLabel.Location = new System.Drawing.Point(12, 61);
+            this.hexLabel.Name = "hexLabel";
+            this.hexLabel.Size = new System.Drawing.Size(97, 18);
+            this.hexLabel.TabIndex = 2;
+            this.hexLabel.Text = "Hexadecimal:";
             // 
-            // label4
+            // decLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 88);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 18);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Decimal:";
+            this.decLabel.AutoSize = true;
+            this.decLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.decLabel.Location = new System.Drawing.Point(12, 88);
+            this.decLabel.Name = "decLabel";
+            this.decLabel.Size = new System.Drawing.Size(66, 18);
+            this.decLabel.TabIndex = 3;
+            this.decLabel.Text = "Decimal:";
             // 
             // po2Box
             // 
+            this.po2Box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.po2Box.Location = new System.Drawing.Point(134, 7);
             this.po2Box.Name = "po2Box";
             this.po2Box.Size = new System.Drawing.Size(144, 20);
             this.po2Box.TabIndex = 0;
             this.po2Box.TextChanged += new System.EventHandler(this.po2Box_TextChanged);
             // 
-            // shorthandBox
-            // 
-            this.shorthandBox.Enabled = false;
-            this.shorthandBox.Location = new System.Drawing.Point(134, 33);
-            this.shorthandBox.Name = "shorthandBox";
-            this.shorthandBox.Size = new System.Drawing.Size(91, 20);
-            this.shorthandBox.TabIndex = 1;
-            this.shorthandBox.TextChanged += new System.EventHandler(this.shorthandBox_TextChanged);
-            // 
             // hexBox
             // 
+            this.hexBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.hexBox.Location = new System.Drawing.Point(134, 59);
             this.hexBox.Name = "hexBox";
             this.hexBox.Size = new System.Drawing.Size(144, 20);
@@ -108,20 +104,25 @@ namespace PO2Helper
             // 
             // decBox
             // 
+            this.decBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.decBox.Location = new System.Drawing.Point(134, 89);
             this.decBox.Name = "decBox";
             this.decBox.Size = new System.Drawing.Size(144, 20);
             this.decBox.TabIndex = 4;
             this.decBox.TextChanged += new System.EventHandler(this.decBox_TextChanged);
             // 
-            // shortHandComboBox
+            // shorthandPrefBox
             // 
-            this.shortHandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.shortHandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.shortHandComboBox.Enabled = false;
-            this.shortHandComboBox.FormattingEnabled = true;
-            this.shortHandComboBox.IntegralHeight = false;
-            this.shortHandComboBox.Items.AddRange(new object[] {
+            this.shorthandPrefBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.shorthandPrefBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.shorthandPrefBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.shorthandPrefBox.FormattingEnabled = true;
+            this.shorthandPrefBox.IntegralHeight = false;
+            this.shorthandPrefBox.Items.AddRange(new object[] {
             "",
             "K",
             "M",
@@ -129,31 +130,56 @@ namespace PO2Helper
             "T",
             "P",
             "E"});
-            this.shortHandComboBox.Location = new System.Drawing.Point(228, 32);
-            this.shortHandComboBox.MaxDropDownItems = 7;
-            this.shortHandComboBox.MaxLength = 1;
-            this.shortHandComboBox.Name = "shortHandComboBox";
-            this.shortHandComboBox.Size = new System.Drawing.Size(50, 21);
-            this.shortHandComboBox.TabIndex = 2;
-            this.shortHandComboBox.SelectedIndexChanged += new System.EventHandler(this.shortHandComboBox_SelectedIndexChanged);
+            this.shorthandPrefBox.Location = new System.Drawing.Point(228, 32);
+            this.shorthandPrefBox.MaxDropDownItems = 7;
+            this.shorthandPrefBox.MaxLength = 1;
+            this.shorthandPrefBox.MinimumSize = new System.Drawing.Size(50, 0);
+            this.shorthandPrefBox.Name = "shorthandPrefBox";
+            this.shorthandPrefBox.Size = new System.Drawing.Size(50, 21);
+            this.shorthandPrefBox.TabIndex = 2;
+            this.shorthandPrefBox.SelectedIndexChanged += new System.EventHandler(this.shorthandPrefBox_SelectedIndexChanged);
+            // 
+            // shorthandNumBox
+            // 
+            this.shorthandNumBox.FormattingEnabled = true;
+            this.shorthandNumBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "4",
+            "8",
+            "16",
+            "32",
+            "64",
+            "128",
+            "256",
+            "512"});
+            this.shorthandNumBox.Location = new System.Drawing.Point(134, 32);
+            this.shorthandNumBox.MaxDropDownItems = 10;
+            this.shorthandNumBox.MaxLength = 4;
+            this.shorthandNumBox.Name = "shorthandNumBox";
+            this.shorthandNumBox.Size = new System.Drawing.Size(88, 21);
+            this.shorthandNumBox.TabIndex = 1;
+            this.shorthandNumBox.SelectedIndexChanged += new System.EventHandler(this.shorthandNumBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 121);
-            this.Controls.Add(this.shortHandComboBox);
+            this.Controls.Add(this.shorthandNumBox);
+            this.Controls.Add(this.shorthandPrefBox);
             this.Controls.Add(this.decBox);
             this.Controls.Add(this.hexBox);
-            this.Controls.Add(this.shorthandBox);
             this.Controls.Add(this.po2Box);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.decLabel);
+            this.Controls.Add(this.hexLabel);
+            this.Controls.Add(this.shorthandLabel);
+            this.Controls.Add(this.po2Label);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "PO2Helper";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
@@ -163,15 +189,15 @@ namespace PO2Helper
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label po2Label;
+        private System.Windows.Forms.Label shorthandLabel;
+        private System.Windows.Forms.Label hexLabel;
+        private System.Windows.Forms.Label decLabel;
         private System.Windows.Forms.TextBox po2Box;
-        private System.Windows.Forms.TextBox shorthandBox;
         private System.Windows.Forms.TextBox hexBox;
         private System.Windows.Forms.TextBox decBox;
-        private System.Windows.Forms.ComboBox shortHandComboBox;
+        private System.Windows.Forms.ComboBox shorthandPrefBox;
+        private System.Windows.Forms.ComboBox shorthandNumBox;
     }
 }
 

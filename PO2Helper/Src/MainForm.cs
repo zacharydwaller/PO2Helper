@@ -38,6 +38,29 @@ namespace PO2Helper
             }
         }
 
+        private void shorthandNumBox_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            shorthand_changed();
+        }
+
+        private void shorthandPrefBox_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            shorthand_changed();
+        }
+
+        private void shorthand_changed()
+        {
+            int po2 = shorthandToPo2( shorthandNumBox.SelectedIndex, shorthandPrefBox.SelectedIndex );
+            if( po2 < maxPo2 )
+            {
+                updateBoxesPo2( po2 );
+            }
+            else
+            {
+                updateBoxesPo2( maxPo2 - 1 );
+            }
+        }
+
         private void hexBox_TextChanged( object sender, EventArgs e )
         {
             string hex;
@@ -84,8 +107,8 @@ namespace PO2Helper
 
         private void updateShorthand( int po2 )
         {
-            shorthandBox.Text = Convert.ToString( po2ToShorthandNumeral( po2 ) );
-            shortHandComboBox.SelectedIndex = po2ToShorthandPrefix( po2 );
+            shorthandNumBox.SelectedIndex = po2ToShorthandNumeral( po2 );
+            shorthandPrefBox.SelectedIndex = po2ToShorthandPrefix( po2 );
         }
 
         private void updateHex( UInt64 dec )
@@ -105,13 +128,13 @@ namespace PO2Helper
             return Convert.ToUInt64( Math.Pow( 2, po2 ) );
         }
 
+        // Returns ComboBox index - the '2' in 2K
         private int po2ToShorthandNumeral( int po2 )
         {
-            // Returns ComboBox index
-            return Convert.ToInt32( Math.Pow( 2, po2 % 10 ) );
+            return po2 % 10;
         }
 
-        // Converts into ComboBox index
+        // Returns ComboBox index - the 'K' in 2K
         private int po2ToShorthandPrefix( int po2 )
         {
             return (po2 - ( po2 % 10 )) / 10;
@@ -119,7 +142,7 @@ namespace PO2Helper
 
         private int shorthandToPo2( int numeral, int prefix )
         {
-            return ( prefix * 10 ) + decToPo2( (UInt64) numeral );
+            return ( prefix * 10 ) + numeral;
         }
 
         // Rounds up to the nearest power of 2
@@ -164,6 +187,7 @@ namespace PO2Helper
             value = 0;
             return false;
         }
+
         private bool tryParseBoxHex( TextBox box, out string value )
         {
             UInt64 dec;
@@ -192,6 +216,7 @@ namespace PO2Helper
             value = String.Empty;
             return false;
         }
+
         private bool tryParseBox( TextBox box, out int value )
         {
             UInt64 output;
@@ -210,22 +235,7 @@ namespace PO2Helper
         // Unused
         private void MainForm_Load( object sender, EventArgs e )
         {
-
-        }
-
-        private void label1_Click( object sender, EventArgs e )
-        {
-
-        }
-
-        private void shorthandBox_TextChanged( object sender, EventArgs e )
-        {
-
-        }
-
-        private void shortHandComboBox_SelectedIndexChanged( object sender, EventArgs e )
-        {
-
+            updateBoxesPo2( 0 );
         }
     }
 }
