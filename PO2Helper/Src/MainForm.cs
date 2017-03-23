@@ -166,16 +166,36 @@ namespace PO2Helper
             {
                 value = value.Substring(2);
             }
+            else if(value.Equals("Overflow"))
+            {
+                return false;
+            }
 
             try
             {
                 // Try conversion
                 dec = Convert.ToUInt64( value, 16 );
-                return true;
+
+                if(converter.decToPo2(dec) < maxPo2)
+                {
+                    
+                    return true;
+                }
+                else
+                {
+                    throw new OverflowException();
+                }
             }
-            catch( OverflowException overflow )
+            catch( OverflowException )
             {
                 pushOverflowError( box );
+                return false;
+            }
+            catch( FormatException )
+            {
+                char[] buffer = new char[64];
+                box.Text.CopyTo(0, buffer, 0, box.Text.Length - 1);
+                box.Text = new String( buffer );
             }
             catch
             {

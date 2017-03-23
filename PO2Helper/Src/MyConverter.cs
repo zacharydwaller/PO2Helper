@@ -48,7 +48,6 @@ namespace PO2Helper
             return String.Concat( "0x", dec.ToString( "X" ) );
         }
 
-        // Assumes hex is valid
         public UInt64 hexToDec( string hex )
         {
             return Convert.ToUInt64( hex, 16 );
