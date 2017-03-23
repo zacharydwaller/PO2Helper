@@ -8,16 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace PO2Helper
 {
     public partial class MainForm : Form
     {
         // Class Constants
         private const int maxPo2 = 64;
-        // MainForm
+
+        // Converter
+        public PO2Helper.MyConverter converter;
+
+        // MainForm Constructor
         public MainForm()
         {
             InitializeComponent();
+            converter = new MyConverter();
+        }
+
+        // MainForm Startup
+        private void MainForm_Load( object sender, EventArgs e )
+        {
+            
+            updateBoxesPo2( 0 );
         }
 
         // Text update functions
@@ -50,7 +63,7 @@ namespace PO2Helper
 
         private void shorthand_changed()
         {
-            int po2 = shorthandToPo2( shorthandNumBox.SelectedIndex, shorthandPrefBox.SelectedIndex );
+            int po2 = converter.shorthandToPo2( shorthandNumBox.SelectedIndex, shorthandPrefBox.SelectedIndex );
             if( po2 < maxPo2 )
             {
                 updateBoxesPo2( po2 );
@@ -67,7 +80,7 @@ namespace PO2Helper
             hexBox.SelectionStart = hexBox.Text.Length;
             if( tryParseBoxHex( hexBox, out hex ) )
             {
-                updateBoxesDec( hexToDec( hex ) );
+                updateBoxesDec( converter.hexToDec( hex ) );
             }
         }
 
@@ -84,7 +97,7 @@ namespace PO2Helper
         // Updates boxes with correct conversions
         private void updateBoxesPo2( int po2 )
         {
-            UInt64 dec = po2ToDec( po2 );
+            UInt64 dec = converter.po2ToDec( po2 );
             updatePo2( po2 );
             updateShorthand( po2 );
             updateHex( dec );
@@ -93,7 +106,7 @@ namespace PO2Helper
         // UInt64 overload
         private void updateBoxesDec( UInt64 dec )
         {
-            int po2 = decToPo2( dec );
+            int po2 = converter.decToPo2( dec );
             updatePo2( po2 );
             updateShorthand( po2 );
             updateHex( dec );
@@ -107,13 +120,13 @@ namespace PO2Helper
 
         private void updateShorthand( int po2 )
         {
-            shorthandNumBox.SelectedIndex = po2ToShorthandNumeral( po2 );
-            shorthandPrefBox.SelectedIndex = po2ToShorthandPrefix( po2 );
+            shorthandNumBox.SelectedIndex = converter.po2ToShorthandNumeral( po2 );
+            shorthandPrefBox.SelectedIndex = converter.po2ToShorthandPrefix( po2 );
         }
 
         private void updateHex( UInt64 dec )
         {
-            hexBox.Text = decToHex( dec );
+            hexBox.Text = converter.decToHex( dec );
         }
 
         private void updateDec( UInt64 dec )
@@ -121,51 +134,7 @@ namespace PO2Helper
             decBox.Text = Convert.ToString( dec );
         }
 
-        // Various Conversions
-
-        private UInt64 po2ToDec( int po2 )
-        {
-            return Convert.ToUInt64( Math.Pow( 2, po2 ) );
-        }
-
-        // Returns ComboBox index - the '2' in 2K
-        private int po2ToShorthandNumeral( int po2 )
-        {
-            return po2 % 10;
-        }
-
-        // Returns ComboBox index - the 'K' in 2K
-        private int po2ToShorthandPrefix( int po2 )
-        {
-            return (po2 - ( po2 % 10 )) / 10;
-        }
-
-        private int shorthandToPo2( int numeral, int prefix )
-        {
-            return ( prefix * 10 ) + numeral;
-        }
-
-        // Rounds up to the nearest power of 2
-        private int decToPo2( UInt64 dec )
-        {
-            int po2 = 0;
-            while( dec > Math.Pow( 2, po2 ) )
-            {
-                po2++;
-            }
-            return po2;
-        }
-
-        private string decToHex( UInt64 dec )
-        {
-            return String.Concat( "0x", dec.ToString( "X" ) );
-        }
-
-        // Assumes hex is valid
-        private UInt64 hexToDec( string hex )
-        {
-            return Convert.ToUInt64( hex, 16 );
-        }
+        
 
         // Try to parse input as numerals
         private bool tryParseBoxULong( TextBox box, out UInt64 value )
@@ -231,11 +200,6 @@ namespace PO2Helper
             box.Text = "Overflow";
             box.SelectAll();
         }
-
-        // Unused
-        private void MainForm_Load( object sender, EventArgs e )
-        {
-            updateBoxesPo2( 0 );
-        }
+        
     }
 }
